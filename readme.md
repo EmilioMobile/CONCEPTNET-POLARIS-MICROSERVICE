@@ -1,7 +1,5 @@
 Example of the **api-gateway service** microservice and API.
 
-![](https://cdn-images-1.medium.com/max/1600/1*jxFIFA8WI8TkMmdbOorOsA.png)
-
 ### Stack
 - NodeJS 7.5.0
 - MongoDB 3.4.1
