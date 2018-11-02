@@ -11,8 +11,18 @@ router.get('/api/concepnet/search/:term', async (ctx) => {
 })
 
 router.get('/api/concepnet/lookup/:term', async (ctx) => {
-  const term = ctx.params.term
-  await requestLookup(ctx, term)
+  // const term = ctx.params.term
+
+  ctx.res.setHeader('Content-Type', 'application/json')
+  let response = ' '
+  let responseObject = {
+    'fulfillmentText': response,
+    'fulfillmentMenssages': [{'text': {'text': 'HOLA'}}],
+    'source': ''
+  }
+
+  ctx.body = responseObject
+  // await requestLookup(ctx, term)
 })
 
 function request (ctx, term) {
