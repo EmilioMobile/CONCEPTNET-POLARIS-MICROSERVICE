@@ -17,7 +17,7 @@ router.post('/api/concepnet/lookup/:term', async (ctx) => {
   let response = ' '
   let responseObject = {
     'fulfillmentText': response,
-    'fulfillmentMenssages': [{'text': {'text': 'HOLA'}}],
+    'fulfillmentMessages': [{'text': {'text': 'HOLA'}}],
     'source': ''
   }
 
