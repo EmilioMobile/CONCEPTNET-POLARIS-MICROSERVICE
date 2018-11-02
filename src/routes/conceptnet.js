@@ -10,7 +10,7 @@ router.get('/api/concepnet/search/:term', async (ctx) => {
   await request(ctx, term)
 })
 
-router.get('/api/concepnet/lookup/:term', async (ctx) => {
+router.post('/api/concepnet/lookup/:term', async (ctx) => {
   // const term = ctx.params.term
   console.log('')
   ctx.res.setHeader('Content-Type', 'application/json')
