@@ -6,5 +6,5 @@ const concepnetRoutes = require('../routes/conceptnet')
 app.use(indexRoutes.routes())
 app.use(concepnetRoutes.routes())
 
-module.exports = app.listen(3000)
+module.exports = app.listen(8080)
 
