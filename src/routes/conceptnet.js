@@ -12,7 +12,7 @@ router.get('/api/concepnet/search/:term', async (ctx) => {
 
 router.get('/api/concepnet/lookup/:term', async (ctx) => {
   // const term = ctx.params.term
-
+  console.log('')
   ctx.res.setHeader('Content-Type', 'application/json')
   let response = ' '
   let responseObject = {
@@ -21,6 +21,7 @@ router.get('/api/concepnet/lookup/:term', async (ctx) => {
     'source': ''
   }
 
+  console.log(responseObject)
   ctx.body = responseObject
   // await requestLookup(ctx, term)
 })
