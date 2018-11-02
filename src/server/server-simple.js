@@ -6,5 +6,7 @@ const concepnetRoutes = require('../routes/conceptnet')
 app.use(indexRoutes.routes())
 app.use(concepnetRoutes.routes())
 
-module.exports = app.listen(8080)
+port = 8080
+module.exports = app.listen(process.env.PORT || port)
+
 
