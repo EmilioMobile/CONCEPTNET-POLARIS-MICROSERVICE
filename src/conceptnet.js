@@ -113,9 +113,9 @@ ConceptNet.prototype.lookup = function () {
   }
 
   // var path = '/data/' + this.version + String(encodeURIComponent(uri))
-  //console.log(uri)
+  // console.log(uri)
   var path = uri // String(encodeURIComponent(uri))
-  //console.log(path)
+  // console.log(path)
   path += '?limit=' + limit + '&offset=' + offset
 
   // if (params.filter === 'core') {

@@ -6,13 +6,45 @@ const router = new Router()
 var ConceptNet = require('../conceptnet.js')
 var cNet = new ConceptNet()
 router.get('/api/concepnet/search/:term', async (ctx) => {
-  const term = ctx.params.term
-  await request(ctx, term)
+  try {
+    const term = ctx.params.term
+    const output = await request(ctx, term)
+    // send it back to the NLP AGENT: Dialogflow
+    ctx.res.setHeader('Content-Type', 'application/json')
+    let response = JSON.stringify(output)
+    let responseObject = {
+      'fulfillmentText': response,
+      'fulfillmentMessages': [{'text': {'text': [response]}}],
+      'source': ''
+    }
+    ctx.body = responseObject
+  } catch (e) {
+    ctx.body = 'Concepnet Search: Error to be handled'
+    console.log(e.stack)
+  }
 })
 
-router.get('/api/concepnet/lookup/:term', async (ctx) => {
-  const term = ctx.params.term
-  await requestLookup(ctx, term)
+router.post('/api/concepnet/lookup', async (ctx) => {
+  const term = ctx.request.body.queryResult.parameters.conceptnet
+  if (term !== undefined) {
+    try {
+      const output = await requestLookup(ctx, term)
+      ctx.res.setHeader('Content-Type', 'application/json')
+      let response = JSON.stringify(output)
+      let responseObject = {
+        'fulfillmentText': response,
+        'fulfillmentMessages': [{'text': {'text': [response]}}],
+        'source': ''
+      }
+      ctx.body = responseObject
+    } catch (e) {
+      ctx.body = 'Concepnet Search: Error to be handled'
+      console.log(e.stack)
+    }
+  } else {
+    ctx.body = 'Concepnet Search: Term is undefined'
+    console.log('term is undefined')
+  }
 })
 
 function request (ctx, term) {
@@ -39,11 +71,8 @@ function requestLookup (ctx, term) {
       offset: 0
     }, function onDone (err, result) {
       if (err) {
-        console.log(err.stack)
-        ctx.body = 'Concepnet Search: Error to be handled'
-        reject('bad')
+        reject(err)
       } else {
-        ctx.body = result
         resolve(result)
       }
     })
