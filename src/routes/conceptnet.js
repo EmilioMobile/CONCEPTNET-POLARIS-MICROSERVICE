@@ -24,7 +24,6 @@ router.get('/api/concepnet/search/:term', async (ctx) => {
   }
 })
 
-<<<<<<< HEAD
 router.post('/api/concepnet/lookup', async (ctx) => {
   const term = ctx.request.body.queryResult.parameters.conceptnet
   if (term !== undefined) {
@@ -46,22 +45,6 @@ router.post('/api/concepnet/lookup', async (ctx) => {
     ctx.body = 'Concepnet Search: Term is undefined'
     console.log('term is undefined')
   }
-=======
-router.post('/api/concepnet/lookup/:term', async (ctx) => {
-  // const term = ctx.params.term
-  console.log('')
-  ctx.res.setHeader('Content-Type', 'application/json')
-  let response = ' '
-  let responseObject = {
-    'fulfillmentText': response,
-    'fulfillmentMessages': [{'text': {'text': ['HOLA']}}],
-    'source': ''
-  }
-
-  console.log(responseObject)
-  ctx.body = responseObject
-  // await requestLookup(ctx, term)
->>>>>>> 731c4b784b23a13205cdb9d1a0fafcef72a3963f
 })
 
 function request (ctx, term) {
