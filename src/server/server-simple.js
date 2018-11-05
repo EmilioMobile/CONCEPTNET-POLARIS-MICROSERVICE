@@ -9,5 +9,6 @@ app.use(bodyParser())
 app.use(indexRoutes.routes())
 app.use(concepnetRoutes.routes())
 
-module.exports = app.listen(3000)
+var port = 8000
+module.exports = app.listen(process.env.PORT || port)
 
