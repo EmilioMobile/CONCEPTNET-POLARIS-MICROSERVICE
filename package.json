@@ -1,5 +1,5 @@
 {
-  "name": "polaris-bot-microservice",
+  "name": "conceptnet-rest-microservice",
   "version": "1.0.0",
   "description": "",
   "author": "",
@@ -48,6 +48,7 @@
     "http-status": "^0.2.5",
     "joi": "^10.6.0",
     "koa": "^2.3.0",
+    "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.2.1",
     "mongodb": "^2.2.36",
     "morgan": "^1.9.1",
