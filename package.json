@@ -55,6 +55,7 @@
     "node-docker-monitor": "^1.0.11",
     "parseurl": "https://registry.npmjs.org/parseurl/-/parseurl-1.3.1.tgz",
     "spdy": "^3.4.7",
+    "unirest": "^0.5.1",
     "validate.io-function": "^1.0.2",
     "validate.io-object": "^1.0.4",
     "validate.io-string-primitive": "^1.0.1"
