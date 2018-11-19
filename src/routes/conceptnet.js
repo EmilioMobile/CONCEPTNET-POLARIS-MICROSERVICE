@@ -51,6 +51,8 @@ router.post('/api/conceptnet/query', async (ctx) => {
 })
 
 router.post('/api/conceptnet/lookup', async (ctx) => {
+  console.log(ctx)
+
   if (ctx.request.body === undefined || ctx.request.body.queryResult === undefined || ctx.request.body.queryResult.parameters === undefined ||
     ctx.request.body.queryResult.parameters.any === undefined) {
     let responseObject = {
