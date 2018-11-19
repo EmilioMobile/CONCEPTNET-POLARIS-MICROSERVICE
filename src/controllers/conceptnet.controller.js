@@ -63,7 +63,7 @@ class Conceptnet {
         // Check if the relation is defined in Conceptnet 5.6
         if (this.isAConceptNetRelation(relation)) {
           try {
-            var request = unirest.get('http://api.conceptanet.io/query?rel=/r/' + relation + '&start=/c/en/' + term)
+            var request = unirest.get('http://api.conceptnet.io/query?rel=/r/' + relation + '&start=/c/en/' + term)
             request.send().end(function (response) {
               if (response.error) {
                 reject(response.error)
@@ -113,8 +113,8 @@ class Conceptnet {
           reject('CONCEPTNET QUERY Error, Concepnet Network Service Not Available.')
         }
       } else {
-        reject('CONCEPTNET QUERY Error, Undefined Parameters.')
         console.log('CONCEPTNET QUERY Error, Undefined Parameters.')
+        reject('CONCEPTNET QUERY Error, Undefined Parameters.')
       }
     })
   }
