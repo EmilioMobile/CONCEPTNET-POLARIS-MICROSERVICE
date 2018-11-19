@@ -9,8 +9,9 @@ var cNet = new ConceptNet()
 router.post('/api/conceptnet/query', async (ctx) => {
   console.log(ctx)
   if (ctx.request.body === undefined || ctx.request.body.queryResult === undefined || ctx.request.body.queryResult.parameters === undefined ||
-    ctx.request.body.queryResult.parameters.any === undefined || ctx.request.body.queryResult.parameters.relation === undefined ) {
-    let responseObject = {
+    ctx.request.body.queryResult.parameters.any === undefined || ctx.request.body.queryResult.parameters.relation === undefined) {
+      console.log('ctxx')
+      let responseObject = {
       'fulfillmentText': 'CONCEPTNET: QUERY API Wrong or Missing Parameters',
       'fulfillmentMessages': [{'text': {'text': ['']}}],
       'source': ''
