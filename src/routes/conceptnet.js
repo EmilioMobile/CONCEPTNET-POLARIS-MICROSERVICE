@@ -6,7 +6,7 @@ const router = new Router()
 var ConceptNet = require('../controllers/conceptnet.controller.js')
 var cNet = new ConceptNet()
 
-router.post('/api/concepnet/query', async (ctx) => {
+router.post('/api/conceptnet/query', async (ctx) => {
   if (ctx.request.body === undefined || ctx.request.body.queryResult === undefined || ctx.request.body.queryResult.parameters === undefined ||
     ctx.request.body.queryResult.parameters.any === undefined || ctx.request.body.queryResult.parameters.relation === undefined ) {
     let responseObject = {
@@ -43,7 +43,8 @@ router.post('/api/concepnet/query', async (ctx) => {
   }
 })
 
-router.post('/api/concepnet/lookup', async (ctx) => {
+router.post('/api/conceptnet/lookup', async (ctx) => {
+  console.log(ctx)
   if (ctx.request.body === undefined || ctx.request.body.queryResult === undefined || ctx.request.body.queryResult.parameters === undefined ||
     ctx.request.body.queryResult.parameters.any === undefined) {
     let responseObject = {
@@ -59,6 +60,7 @@ router.post('/api/concepnet/lookup', async (ctx) => {
 
   try {
     // get conceptnet 5.6 output
+    console.log('KK')
     const output = await cNet.lookup(term)
     // manipulate conceptnet output, send it back to the dialogflow fullfillment client
     let response = JSON.stringify(output)
