@@ -11,7 +11,7 @@ router.post('/api/conceptnet/query', async (ctx) => {
     ctx.request.body.queryResult.parameters.any === undefined || ctx.request.body.queryResult.parameters.relation === undefined) {
     let responseObject = {
       'fulfillmentText': 'CONCEPTNET: QUERY API Wrong or Missing Parameters',
-      'fulfillmentMessages': [{'text': {'text': ['Meeh']}}],
+      'fulfillmentMessages': [{'text': {'text': ['']}}],
       'source': 'CONCEPTNET'
     }
     ctx.res.setHeader('Content-Type', 'application/json')
