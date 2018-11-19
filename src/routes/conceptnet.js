@@ -8,10 +8,14 @@ var cNet = new ConceptNet()
 
 router.post('/api/concepnet/query', async (ctx) => {
   if (ctx.request.body === undefined || ctx.request.body.queryResult === undefined || ctx.request.body.queryResult.parameters === undefined ||
-    ctx.request.body.queryResult.parameters.any === undefined) {
-    console.log('conceptnet lookup api error, malformed json')
-    ctx.body = 'conceptnet lookup api error'
-    console.log(ctx.request.body)
+    ctx.request.body.queryResult.parameters.any === undefined || ctx.request.body.queryResult.parameters.relation === undefined ) {
+    let responseObject = {
+      'fulfillmentText': 'CONCEPTNET: QUERY API Wrong or Missing Parameters',
+      'fulfillmentMessages': [{'text': {'text': ['']}}],
+      'source': ''
+    }
+    ctx.res.setHeader('Content-Type', 'application/json')
+    ctx.body = responseObject
     return
   }
   const term = ctx.request.body.queryResult.parameters.any
@@ -19,28 +23,36 @@ router.post('/api/concepnet/query', async (ctx) => {
   try {
     // get conceptnet 5.6 output
     const output = await cNet.query(term, relation)
-    // manipulate conceptnet output and
-    // send it back to the dialogflow fullfillment client
+    // manipulate conceptnet output, send it back to the dialogflow fullfillment client
     let response = JSON.stringify(output)
     let responseObject = {
-      'fulfillmentText': response,
+      'fulfillmentText': output,
       'fulfillmentMessages': [{'text': {'text': [response]}}],
-      'source': ''
+      'source': 'CONCEPTNET'
     }
     ctx.res.setHeader('Content-Type', 'application/json')
     ctx.body = responseObject
   } catch (e) {
+    let responseObject = {
+      'fulfillmentText': 'CONCEPTNET: QUERY API Error',
+      'fulfillmentMessages': [{'text': {'text': [e]}}],
+      'source': 'CONCEPTNET'
+    }
+    ctx.body = responseObject
     console.log(e.stack)
-    ctx.body = 'conceptnet query API error'
   }
 })
 
 router.post('/api/concepnet/lookup', async (ctx) => {
   if (ctx.request.body === undefined || ctx.request.body.queryResult === undefined || ctx.request.body.queryResult.parameters === undefined ||
     ctx.request.body.queryResult.parameters.any === undefined) {
-    console.log('conceptnet lookup api error, malformed json')
-    ctx.body = 'conceptnet lookup api error'
-    console.log(ctx.request.body)
+    let responseObject = {
+      'fulfillmentText': 'CONCEPTNET: LOOKUP API Wrong or Missing Parameters',
+      'fulfillmentMessages': [{'text': {'text': ['']}}],
+      'source': 'CONCEPTNET'
+    }
+    ctx.res.setHeader('Content-Type', 'application/json')
+    ctx.body = responseObject
     return
   }
   const term = ctx.request.body.queryResult.parameters.any
@@ -48,19 +60,23 @@ router.post('/api/concepnet/lookup', async (ctx) => {
   try {
     // get conceptnet 5.6 output
     const output = await cNet.lookup(term)
-    // manipulate conceptnet output and
-    // send it back to the dialogflow fullfillment client
+    // manipulate conceptnet output, send it back to the dialogflow fullfillment client
     let response = JSON.stringify(output)
     let responseObject = {
       'fulfillmentText': response,
       'fulfillmentMessages': [{'text': {'text': [response]}}],
-      'source': ''
+      'source': 'CONCEPTNET'
     }
     ctx.res.setHeader('Content-Type', 'application/json')
     ctx.body = responseObject
   } catch (e) {
+    let responseObject = {
+      'fulfillmentText': 'CONCEPTNET: LOOKUP API Error',
+      'fulfillmentMessages': [{'text': {'text': ['']}}],
+      'source': 'CONCEPTNET'
+    }
+    ctx.body = responseObject
     console.log(e.stack)
-    ctx.body = 'conceptnet lookup API error'
   }
 })
 
