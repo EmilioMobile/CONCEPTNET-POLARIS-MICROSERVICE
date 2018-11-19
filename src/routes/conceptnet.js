@@ -21,7 +21,9 @@ router.post('/api/conceptnet/query', async (ctx) => {
     return
   }
   const term = ctx.request.body.queryResult.parameters.any
-  const relation = ctx.request.body.queryResult.parameters.relation
+  let relation = ctx.request.body.queryResult.parameters.relation
+
+  relation = 'isAs'
   try {
     // get conceptnet 5.6 output
     console.log('ctx')
