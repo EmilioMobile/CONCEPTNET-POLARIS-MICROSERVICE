@@ -27,7 +27,7 @@ router.post('/api/concepnet/query', async (ctx) => {
     let response = JSON.stringify(output)
     let responseObject = {
       'fulfillmentText': output,
-      'fulfillmentMessages': [{'text': {'text': [response]}}],
+      'fulfillmentMessages': [{'text': {'text': [output]}}],
       'source': 'CONCEPTNET'
     }
     ctx.res.setHeader('Content-Type', 'application/json')
