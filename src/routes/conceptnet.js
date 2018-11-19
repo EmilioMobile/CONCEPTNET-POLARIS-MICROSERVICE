@@ -25,8 +25,8 @@ router.post('/api/conceptnet/query', async (ctx) => {
 
   try {
     // get conceptnet 5.6 output
-    console.log('ctx')
-    const output = await cNet.query(term, relation)
+    console.log('ctx', relation)
+    const output = await cNet.query(term, 'IsA')
     // manipulate conceptnet output, send it back to the dialogflow fullfillment client
     console.log('ctx', relation)
 
