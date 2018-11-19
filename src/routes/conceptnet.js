@@ -10,42 +10,43 @@ router.post('/api/conceptnet/query', async (ctx) => {
   console.log(ctx)
   if (ctx.request.body === undefined || ctx.request.body.queryResult === undefined || ctx.request.body.queryResult.parameters === undefined ||
     ctx.request.body.queryResult.parameters.any === undefined || ctx.request.body.queryResult.parameters.relation === undefined) {
-      console.log('ctxx')
-      let responseObject = {
+    console.log('ctxx')
+    let responseObject = {
       'fulfillmentText': 'CONCEPTNET: QUERY API Wrong or Missing Parameters',
       'fulfillmentMessages': [{'text': {'text': ['']}}],
       'source': ''
     }
     ctx.res.setHeader('Content-Type', 'application/json')
     ctx.body = responseObject
-    return
-  }
-  const term = ctx.request.body.queryResult.parameters.any
-  let relation = ctx.request.body.queryResult.parameters.relation
+   // return
+  } else {
+    const term = ctx.request.body.queryResult.parameters.any
+    let relation = ctx.request.body.queryResult.parameters.relation
 
-  try {
-    // get conceptnet 5.6 output
-    console.log('ctx', relation)
-    const output = await cNet.query(term, 'IsA')
-    // manipulate conceptnet output, send it back to the dialogflow fullfillment client
-    console.log('ctx', relation)
+    try {
+      // get conceptnet 5.6 output
+      console.log('ctx', relation)
+      const output = await cNet.query(term, 'IsA')
+      // manipulate conceptnet output, send it back to the dialogflow fullfillment client
+      console.log('ctx', relation)
 
-    let response = JSON.stringify(output)
-    let responseObject = {
-      'fulfillmentText': output,
-      'fulfillmentMessages': [{'text': {'text': [output]}}],
-      'source': 'CONCEPTNET'
+      let response = JSON.stringify(output)
+      let responseObject = {
+        'fulfillmentText': output,
+        'fulfillmentMessages': [{'text': {'text': [output]}}],
+        'source': 'CONCEPTNET'
+      }
+      ctx.res.setHeader('Content-Type', 'application/json')
+      ctx.body = responseObject
+    } catch (e) {
+      let responseObject = {
+        'fulfillmentText': 'CONCEPTNET: QUERY API Error',
+        'fulfillmentMessages': [{'text': {'text': [e]}}],
+        'source': 'CONCEPTNET'
+      }
+      ctx.body = responseObject
+      console.log(e.stack)
     }
-    ctx.res.setHeader('Content-Type', 'application/json')
-    ctx.body = responseObject
-  } catch (e) {
-    let responseObject = {
-      'fulfillmentText': 'CONCEPTNET: QUERY API Error',
-      'fulfillmentMessages': [{'text': {'text': [e]}}],
-      'source': 'CONCEPTNET'
-    }
-    ctx.body = responseObject
-    console.log(e.stack)
   }
 })
 
