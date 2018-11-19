@@ -63,20 +63,19 @@ class Conceptnet {
         // Check if the relation is defined in Conceptnet 5.6
         if (this.isAConceptNetRelation(relation)) {
           try {
-            var request = unirest.get('http://api.conceptnet.io/query?rel=/r/' + relation + '&start=/c/en/' + term)
+            var request = unirest.get('http://api.conceptanet.io/query?rel=/r/' + relation + '&start=/c/en/' + term)
             request.send().end(function (response) {
               if (response.error) {
                 reject(response.error)
               } else {
-                var aa = []
-                var kk = response.body.edges
-                kk.forEach(function (entry) {
+                var surfaceTextResponse = []
+                var edges = response.body.edges
+                edges.forEach(function (entry) {
                   if (entry.surfaceText) {
-                    console.log(entry.surfaceText)
-                    aa.push({ surfaceText: entry.surfaceText, weight: entry.weight })
+                    surfaceTextResponse.push({ surfaceText: entry.surfaceText, weight: entry.weight })
                   }
                 })
-                resolve(aa)
+                resolve(surfaceTextResponse)
               }
             })
           } catch (e) {
