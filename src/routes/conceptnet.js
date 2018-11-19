@@ -35,7 +35,7 @@ router.post('/api/conceptnet/query', async (ctx) => {
     } catch (e) {
       let responseObject = {
         'fulfillmentText': 'CONCEPTNET: QUERY API Error',
-        'fulfillmentMessages': [{'text': {'text': [e]}}],
+        'fulfillmentMessages': [{'text': {'text': ['CONCEPTNET: QUERY API Error']}}],
         'source': 'CONCEPTNET'
       }
       ctx.body = responseObject
@@ -71,7 +71,7 @@ router.post('/api/conceptnet/lookup', async (ctx) => {
     } catch (e) {
       let responseObject = {
         'fulfillmentText': 'CONCEPTNET: LOOKUP API Error',
-        'fulfillmentMessages': [{'text': {'text': ['']}}],
+        'fulfillmentMessages': [{'text': {'text': ['CONCEPTNET: LOOKUP API Error']}}],
         'source': 'CONCEPTNET'
       }
       ctx.body = responseObject
