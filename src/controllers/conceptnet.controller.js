@@ -59,32 +59,24 @@ class Conceptnet {
   */
   query (term, relation) {
     return new Promise((resolve, reject) => {
-      console.log(term, relation)
-
       if (term !== undefined || relation !== undefined) {
         // Check if the relation is defined in Conceptnet 5.6
         if (this.isAConceptNetRelation(relation)) {
           try {
-            console.log('kss')
-
             var request = unirest.get('http://api.conceptnet.io/query?rel=/r/' + relation + '&start=/c/en/' + term)
             request.send().end(function (response) {
 
               if (response.error) {
                 reject(response.error)
               } else {
-                console.log('k')
                 var aa = []
                 var kk = response.body.edges
-
                 kk.forEach(function (entry) {
                   if (entry.surfaceText) {
                     console.log(entry.surfaceText)
                     aa.push({ surfaceText: entry.surfaceText, weight: entry.weight })
                   }
                 })
-                console.log('ka')
-
                 resolve(aa)
               }
             })

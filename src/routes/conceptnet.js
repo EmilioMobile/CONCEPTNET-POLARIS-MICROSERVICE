@@ -25,15 +25,12 @@ router.post('/api/conceptnet/query', async (ctx) => {
 
     try {
       // get conceptnet 5.6 output
-      console.log('ctx', relation)
       const output = await cNet.query(term, relation)
       // manipulate conceptnet output, send it back to the dialogflow fullfillment client
-      console.log('ctx', relation)
-
       let response = JSON.stringify(output)
       let responseObject = {
-        'fulfillmentText': output,
-        'fulfillmentMessages': [{'text': {'text': [output]}}],
+        'fulfillmentText': response,
+        'fulfillmentMessages': [{'text': {'text': [response]}}],
         'source': 'CONCEPTNET'
       }
       ctx.res.setHeader('Content-Type', 'application/json')
