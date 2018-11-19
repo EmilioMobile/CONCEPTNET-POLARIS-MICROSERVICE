@@ -7,14 +7,12 @@ var ConceptNet = require('../controllers/conceptnet.controller.js')
 var cNet = new ConceptNet()
 
 router.post('/api/conceptnet/query', async (ctx) => {
-  console.log(ctx)
   if (ctx.request.body === undefined || ctx.request.body.queryResult === undefined || ctx.request.body.queryResult.parameters === undefined ||
-    ctx.request.body.queryResult.parameters.any === undefined) { // || ctx.request.body.queryResult.parameters.relation === undefined) {
-    console.log('ctxx')
+    ctx.request.body.queryResult.parameters.any === undefined || ctx.request.body.queryResult.parameters.relation === undefined) {
     let responseObject = {
       'fulfillmentText': 'CONCEPTNET: QUERY API Wrong or Missing Parameters',
-      'fulfillmentMessages': [{'text': {'text': ['']}}],
-      'source': ''
+      'fulfillmentMessages': [{'text': {'text': ['Meeh']}}],
+      'source': 'CONCEPTNET'
     }
     ctx.res.setHeader('Content-Type', 'application/json')
     ctx.body = responseObject
@@ -22,7 +20,6 @@ router.post('/api/conceptnet/query', async (ctx) => {
   } else {
     const term = ctx.request.body.queryResult.parameters.any
     let relation = ctx.request.body.queryResult.parameters.relation
-
     try {
       // get conceptnet 5.6 output
       const output = await cNet.query(term, relation)

@@ -65,7 +65,6 @@ class Conceptnet {
           try {
             var request = unirest.get('http://api.conceptnet.io/query?rel=/r/' + relation + '&start=/c/en/' + term)
             request.send().end(function (response) {
-
               if (response.error) {
                 reject(response.error)
               } else {
