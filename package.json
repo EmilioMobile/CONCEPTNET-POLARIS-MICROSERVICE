@@ -52,6 +52,7 @@
     "koa-router": "^7.2.1",
     "mongodb": "^2.2.36",
     "morgan": "^1.9.1",
+    "natural": "^0.6.2",
     "node-docker-monitor": "^1.0.11",
     "parseurl": "https://registry.npmjs.org/parseurl/-/parseurl-1.3.1.tgz",
     "spdy": "^3.4.7",

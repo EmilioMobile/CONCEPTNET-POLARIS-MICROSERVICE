@@ -3,7 +3,7 @@ var bodyParser = require('koa-bodyparser')
 
 const app = new Koa()
 const indexRoutes = require('../routes/index')
-const concepnetRoutes = require('../routes/conceptnet')
+const concepnetRoutes = require('../routes/conceptnet.route')
 
 app.use(async (ctx, next) => {
   try {
@@ -30,6 +30,6 @@ app.use(bodyParser())
 app.use(indexRoutes.routes())
 app.use(concepnetRoutes.routes())
 
-var port = 8000
+var port = 4040
 module.exports = app.listen(process.env.PORT || port)
 

@@ -80,15 +80,15 @@ class Conceptnet {
             })
           } catch (e) {
             console.log(e.stack)
-            reject('CONCEPTNET QUERY Error, Concepnet Network Service Not Available.')
+            reject('CONCEPTNET QUERY Error, Concepnet Network service is not available.')
           }
         } else {
-          console.log('CONCEPTNET QUERY Error, Not A Valid Relation.')
-          reject('CONCEPTNET QUERY Error, Not A Valid Relation.')
+          console.log('CONCEPTNET QUERY Error, the relation is not supported.')
+          reject('CONCEPTNET QUERY Error, the relation is not supported.')
         }
       } else {
-        console.log('CONCEPTNET QUERY Error, Undefined Parameters.')
-        reject('CONCEPTNET QUERY Error, Undefined Parameters.')
+        console.log('CONCEPTNET QUERY Error, undefined parameters.')
+        reject('CONCEPTNET QUERY Error, undefined parameters.')
       }
     })
   }
@@ -110,11 +110,11 @@ class Conceptnet {
           })
         } catch (e) {
           console.log(e.stack)
-          reject('CONCEPTNET QUERY Error, Concepnet Network Service Not Available.')
+          reject('CONCEPTNET QUERY Error, Concepnet Network service is not available.')
         }
       } else {
-        console.log('CONCEPTNET QUERY Error, Undefined Parameters.')
-        reject('CONCEPTNET QUERY Error, Undefined Parameters.')
+        console.log('CONCEPTNET QUERY Error, Undefined parameters.')
+        reject('CONCEPTNET QUERY Error, Undefined parameters.')
       }
     })
   }
