@@ -26,7 +26,7 @@ router.post('/api/conceptnet/query', async (ctx) => {
     try {
       // conceptnet 5.6 QUERY
       const matches = await cNet.query(term, relation)
-      const responseText = nlp.analyzeConceptnetMatch(queryText, matches)
+      const responseText = nlp.analyzeConceptnetMatch(queryText, term, matches)
       ctx.body = dialogFlowResponseFmt(responseText)
     } catch (e) {
       console.log(e.stack)

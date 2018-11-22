@@ -46,13 +46,13 @@ class Agent {
     Will select the highest weight from the array of surfaceText
     replied from conceptnet
   */
-  analyzeConceptnetScores (data) {
+  analyzeConceptnetScores (responses) {
     let maxWeight = 0
     let response = "Sorry, i don't know ...'"
-    for (let i = 0; i < data.length; i++) {
-      if (data[i].weight > maxWeight) {
-        response = this.clean(data[i].surfaceText)
-        maxWeight = data[i].weight
+    for (let i = 0; i < responses.length; i++) {
+      if (responses[i].weight > maxWeight) {
+        response = this.clean(responses[i].surfaceText)
+        maxWeight = responses[i].weight
       }
     }
     return response
