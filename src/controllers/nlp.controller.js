@@ -48,7 +48,7 @@ class Agent {
   */
   analyzeConceptnetScores (data) {
     let maxWeight = 0
-    let response = 'no match'
+    let response = "Sorry, i don't know ...'"
     for (let i = 0; i < data.length; i++) {
       if (data[i].weight > maxWeight) {
         response = this.clean(data[i].surfaceText)
@@ -64,7 +64,7 @@ class Agent {
   */
   analyzeConceptnetMatch (queryText, responses) {
     let maxMatch = queryText.length + 1
-    let response = 'no match'
+    let response = "Sorry, i don't know ...'"
     for (let i = 0; i < responses.length; i++) {
       // extract the term matching the first [[ ... ]] ocurrence
       var rx = /\[\[(.*?)\]\]/g
