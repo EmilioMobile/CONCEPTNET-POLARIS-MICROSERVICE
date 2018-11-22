@@ -64,7 +64,7 @@ class Agent {
   */
   analyzeConceptnetMatch (queryText, responses) {
     let maxMatch = queryText.length + 1
-    let response = "Sorry, i don't know ...'"
+    let response = "Sorry, i don't know ..."
     for (let i = 0; i < responses.length; i++) {
       // extract the term matching the first [[ ... ]] ocurrence
       var rx = /\[\[(.*?)\]\]/g
