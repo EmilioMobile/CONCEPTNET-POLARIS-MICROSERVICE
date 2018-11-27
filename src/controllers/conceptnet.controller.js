@@ -63,7 +63,7 @@ class Conceptnet {
         // Check if the relation is defined in Conceptnet 5.6
         if (this.isAConceptNetRelation(relation)) {
           try {
-            var request = unirest.get('http://api.conceptnet.io/query?rel=/r/' + relation + '&start=/c/en/' + term)
+            var request = unirest.get('http://api.conceptnet.io/query?rel=/r/' + relation + '&start=/c/en/' + term.toLowerCase())
             request.send().end(function (response) {
               if (response.error) {
                 reject(response.error)
