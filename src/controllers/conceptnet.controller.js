@@ -52,6 +52,46 @@ var ConceptNetRelations = [
   'InstanceOf'
 ]
 
+var relationString = {
+  'RelatedTo': 'is related to',
+  'ExternalURL': 'is related to',
+  'FormOf': 'is a form of',
+  'IsA': 'is a',
+  'PartOf': 'is part of',
+  'HasA': 'has a',
+  'UsedFor': 'is used for',
+  'CapableOf': 'is capable of',
+  'AtLocation': 'is at location',
+  'Causes': 'causes',
+  'HasSubevent': 'has subevent',
+  'HasFirstSubevent': 'has first subevent',
+  'HasLastSubevent': 'has last subevent',
+  'HasPrerequisite': 'has a prerequisite',
+  'HasProperty': 'has a property',
+  'MotivatedByGoal': 'is motivated by',
+  'ObstructedBy': 'is obstructed by',
+  'Desires': 'desires',
+  'CreatedBy': 'is created by',
+  'Synonym': 'is synonym of',
+  'Antonym': 'is antonym of',
+  'DistinctFrom': 'is distinct from',
+  'DerivedFrom': 'is derived from',
+  'SymbolOf': 'symbol is',
+  'DefinedAs': 'is defined as',
+  'Entails': 'entails',
+  'MannerOf': 'is a manner of',
+  'LocatedNear': 'is located near',
+  'HasContext': 'has a context of',
+  'dbpedia/...': 'dbpedia',
+  'SimilarTo': 'is similar to',
+  'EtymologicallyRelatedTo': 'is related to',
+  'EtymologicallyDerivedFrom': 'derives from',
+  'CausesDesire': 'causes desire of',
+  'MadeOf': 'is made of',
+  'ReceivesAction': 'receives action of',
+  'InstanceOf': 'an instance of'
+}
+
 class Conceptnet {
 
   /*
@@ -63,6 +103,7 @@ class Conceptnet {
         // Check if the relation is defined in Conceptnet 5.6
         if (this.isAConceptNetRelation(relation)) {
           try {
+            console.log(relation)
             var request = unirest.get('http://api.conceptnet.io/query?rel=/r/' + relation + '&start=/c/en/' + term.toLowerCase())
             request.send().end(function (response) {
               if (response.error) {
@@ -71,7 +112,10 @@ class Conceptnet {
                 var surfaceTextResponse = []
                 var edges = response.body.edges
                 edges.forEach(function (entry) {
+                  entry.surfaceText = '[[' + entry.start.label + ']] ' + relationString[entry.rel.label] + ' [[' + entry.end.label + ']]'
                   if (entry.surfaceText) {
+                    console.log(entry)
+                    console.log(entry.surfaceText)
                     surfaceTextResponse.push({ surfaceText: entry.surfaceText, weight: entry.weight })
                   }
                 })
