@@ -63,20 +63,28 @@ class Agent {
     array of surfaceText replied from conceptnet
   */
   analyzeConceptnetMatch (queryText, responses) {
-    let maxMatch = queryText.length + 1
-    let response = "Sorry, i don't know ..."
-    for (let i = 0; i < responses.length; i++) {
-      // extract the term matching the first [[ ... ]] ocurrence
-      var rx = /\[\[(.*?)\]\]/g
-      const match = rx.exec(responses[i].surfaceText)
-      // find the text query in the selection of surfaceText from Conceptnet
-      const matchPosition = queryText.search(match[1])
-      if (matchPosition >= 0 && matchPosition < maxMatch) {
-        response = this.clean(responses[i].surfaceText)
-        maxMatch = matchPosition
+    if (responses && queryText) {
+      let maxMatch = queryText.length + 1
+      let response = "Sorry, i don't know ..."
+      for (let i = 0; i < responses.length; i++) {
+        // extract the term matching the first [[ ... ]] ocurrence
+        var rx = /\[\[(.*?)\]\]/g
+        const match = rx.exec(responses[i].surfaceText)
+        // find the text query in the selection of surfaceText from Conceptnet
+        if (match) {
+          const matchPosition = queryText.search(match[1])
+          if (matchPosition >= 0 && matchPosition < maxMatch) {
+            response = this.clean(responses[i].surfaceText)
+            maxMatch = matchPosition
+          }
+        } else {
+          response = 'No Match'
+        }
       }
+      return response
+    } else {
+      return 'Internal Error'
     }
-    return response
   }
 }
 
