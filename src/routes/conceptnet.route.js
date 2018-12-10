@@ -17,7 +17,7 @@ var nlp = new NLP()
 router.post('/api/conceptnet/query', async (ctx) => {
   ctx.res.setHeader('Content-Type', 'application/json')
   // extract the data from the request
-  if (ctx.request.body.queryResult.action === 'polarix_smalltalk') {
+  if (ctx.request.body.queryResult.action === 'polarisx_smalltalk') {
       const smalltalkQuestion = request.body.queryResult.parameters.smalltalk
       if (!smalltalkQuestion){
         ctx.body = dialogFlowResponseFmt('SMALLTALK: Wrong or Missing Parameters')
