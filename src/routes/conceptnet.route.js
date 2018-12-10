@@ -6,6 +6,7 @@ const Router = require('koa-router')
 var ConceptNet = require('../controllers/conceptnet.controller.js')
 var NLP = require('../controllers/nlp.controller.js')
 var dialogFlowResponseFmt = require('../controllers/dialogflow.controller.js')
+var smalltalks = require('../controllers/smalltalk.controller.js')
 const router = new Router()
 var cNet = new ConceptNet()
 var nlp = new NLP()
@@ -16,25 +17,37 @@ var nlp = new NLP()
 router.post('/api/conceptnet/query', async (ctx) => {
   ctx.res.setHeader('Content-Type', 'application/json')
   // extract the data from the request
-  const queryText = ctx.request.body.queryResult.queryText
-  const term = ctx.request.body.queryResult.parameters.any
-  const relation = ctx.request.body.queryResult.parameters.relation
-
-  if (!queryText || !term || !relation) {
-    ctx.body = dialogFlowResponseFmt('CONCEPTNET: QUERY API Wrong or Missing Parameters')
-  } else {
-    try {
-      // conceptnet 5.6 QUERY
-      const matches = await cNet.query(term, relation)
-      if (matches) {
-        const responseText = nlp.analyzeConceptnetScores(matches)
-        ctx.body = dialogFlowResponseFmt(responseText)
-      } else {
-        ctx.body = dialogFlowResponseFmt('CONCEPTNET: No Match')
+  if (ctx.request.body.queryResult.action === 'polarix_smalltalk') {
+      const smalltalkQuestion = request.body.queryResult.parameters.smalltalk
+      if (!smalltalkQuestion){
+        ctx.body = dialogFlowResponseFmt('SMALLTALK: Wrong or Missing Parameters')
       }
-    } catch (e) {
-      console.log(e.stack)
-      ctx.body = dialogFlowResponseFmt('CONCEPTNET: QUERY API Error')
+      else {
+        const response = smalltalk.chat(smalltalkQuestion)
+        ctx.body = dialogFlowResponseFmt(response)
+      }
+  }
+  else {
+    const queryText = ctx.request.body.queryResult.queryText
+    const term = ctx.request.body.queryResult.parameters.any
+    const relation = ctx.request.body.queryResult.parameters.relation
+
+    if (!queryText || !term || !relation) {
+      ctx.body = dialogFlowResponseFmt('CONCEPTNET: QUERY API Wrong or Missing Parameters')
+    } else {
+      try {
+        // conceptnet 5.6 QUERY
+        const matches = await cNet.query(term, relation)
+        if (matches) {
+          const responseText = nlp.analyzeConceptnetScores(matches)
+          ctx.body = dialogFlowResponseFmt(responseText)
+        } else {
+          ctx.body = dialogFlowResponseFmt('CONCEPTNET: No Match')
+        }
+      } catch (e) {
+        console.log(e.stack)
+        ctx.body = dialogFlowResponseFmt('CONCEPTNET: QUERY API Error')
+      }
     }
   }
 })
