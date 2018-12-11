@@ -17,6 +17,7 @@ var nlp = new NLP()
 router.post('/api/conceptnet/query', async (ctx) => {
   ctx.res.setHeader('Content-Type', 'application/json')
   // extract the data from the request
+  console.log(ctx.request.body)
   if (ctx.request.body.queryResult.action === 'polarisx_smalltalk') {
       const smalltalkQuestion = request.body.queryResult.parameters.smalltalk
       if (!smalltalkQuestion){
