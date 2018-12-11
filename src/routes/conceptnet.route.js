@@ -26,7 +26,7 @@ router.post('/api/conceptnet/query', async (ctx) => {
         ctx.body = dialogFlowResponseFmt('SMALLTALK: Wrong or Missing Parameters')
       }
       else {
-        const response = smalltalk.chat(smalltalkQuestion)
+        const response = await smalltalk.chat(smalltalkQuestion)
         ctx.body = dialogFlowResponseFmt('casual' + ctx.request.body.queryResult.action + ' ' + response)
         console.log('THREE' + response)
       }
