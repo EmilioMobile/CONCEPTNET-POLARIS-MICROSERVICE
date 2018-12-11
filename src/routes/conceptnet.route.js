@@ -22,21 +22,20 @@ router.post('/api/conceptnet/query', async (ctx) => {
     console.log('ONE')
     console.log(ctx.request.body.queryResult.parameters.smalltalk)
     if (ctx.request.body.queryResult.parameters.smalltalk) {
-      //const smalltalkQuestion = request.body.queryResult
-      console.log('TWO2')
+      const smalltalkQuestion = ctx.request.body.queryResult.parameters.smalltalk
+      console.log('TWO2' + smalltalkQuestion )
       ctx.body = 'KK'
-/*
       if (!smalltalkQuestion){
         ctx.body = dialogFlowResponseFmt('SMALLTALK: Wrong or Missing Parameters')
-        console.log('TWO')
+        console.log('TWO3')
 
       }
       else {
         // const response = smalltalk.chat(smalltalkQuestion)
-        ctx.body = 'KK' // dialogFlowResponseFmt('casual' + ctx.request.body.queryResult.action)
+        ctx.body = 'KK3' // dialogFlowResponseFmt('casual' + ctx.request.body.queryResult.action)
         console.log('THREE')
 
-      }*/
+      }
     } else {
       ctx.body = 'KK2'
     }
