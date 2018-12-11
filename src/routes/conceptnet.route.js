@@ -6,7 +6,8 @@ const Router = require('koa-router')
 var ConceptNet = require('../controllers/conceptnet.controller.js')
 var NLP = require('../controllers/nlp.controller.js')
 var dialogFlowResponseFmt = require('../controllers/dialogflow.controller.js')
-var smalltalks = require('../controllers/smalltalk.controller.js')
+var PolarisXSmalltalk = require('../controllers/smalltalk.controller.js')
+const smalltalk = new PolarisXSmalltalk()
 const router = new Router()
 var cNet = new ConceptNet()
 var nlp = new NLP()
@@ -31,6 +32,8 @@ router.post('/api/conceptnet/query', async (ctx) => {
 
       }
       else {
+        console.log('TWO4')
+
         const response = smalltalk.chat(smalltalkQuestion)
         ctx.body = 'KK3' + response // dialogFlowResponseFmt('casual' + ctx.request.body.queryResult.action)
         console.log('THREE')
