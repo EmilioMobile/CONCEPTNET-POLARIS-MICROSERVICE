@@ -31,10 +31,9 @@ router.post('/api/conceptnet/query', async (ctx) => {
 
       }
       else {
-        // const response = smalltalk.chat(smalltalkQuestion)
-        ctx.body = 'KK3' // dialogFlowResponseFmt('casual' + ctx.request.body.queryResult.action)
+        const response = smalltalk.chat(smalltalkQuestion)
+        ctx.body = 'KK3' + response // dialogFlowResponseFmt('casual' + ctx.request.body.queryResult.action)
         console.log('THREE')
-
       }
     } else {
       ctx.body = 'KK2'
