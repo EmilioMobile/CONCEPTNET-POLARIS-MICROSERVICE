@@ -27,7 +27,7 @@ class PolarisXSmalltalk {
             resolve('I am PolarisX bot')
           }
 
-          case "what is the weather today": {
+          case "what is the weather": {
             resolve('Today is cold, very very cold')
           }
 
