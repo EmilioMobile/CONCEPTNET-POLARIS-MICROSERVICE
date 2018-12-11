@@ -1,14 +1,11 @@
 
 
 class PolarisXSmalltalk {
-    chat (input) {
-        console.log('TWO4')
-        return new Promise((resolve, reject) => {
-            console.log(input + 'Waaaaoooouu ke guay')
-            resolve(input + 'Waaaaoooouu ke guay')
-        })
-    }
+  chat (input) {
+      return new Promise((resolve, reject) => {
+          resolve('Hi I am the small talk module, you wanted a answer for ' + input + '?')
+      })
+  }
 }
-
 
 module.exports = PolarisXSmalltalk
