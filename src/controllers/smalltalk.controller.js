@@ -6,6 +6,7 @@ class PolarisXSmalltalk {
         switch (input) {
           case "what time is it": {
             var d = new Date();
+            console.log('Now is ', d.getHours(), ':', d.getMinutes(), ':', d.getSeconds())
             resolve('Now is ', d.getHours(), ':', d.getMinutes(), ':', d.getSeconds())
           }
 
