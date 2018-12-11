@@ -20,10 +20,12 @@ router.post('/api/conceptnet/query', async (ctx) => {
   console.log(ctx.request.body)
   if (ctx.request.body.queryResult.action === 'polarisx_smalltalk') {
     console.log('ONE')
-
-      const smalltalkQuestion = request.body.queryResult.parameters.smalltalk
+    console.log(ctx.request.body.queryResult.parameters.smalltalk)
+    if (ctx.request.body.queryResult.parameters.smalltalk) {
+      //const smalltalkQuestion = request.body.queryResult
       console.log('TWO2')
-
+      ctx.body = 'KK'
+/*
       if (!smalltalkQuestion){
         ctx.body = dialogFlowResponseFmt('SMALLTALK: Wrong or Missing Parameters')
         console.log('TWO')
@@ -34,7 +36,10 @@ router.post('/api/conceptnet/query', async (ctx) => {
         ctx.body = 'KK' // dialogFlowResponseFmt('casual' + ctx.request.body.queryResult.action)
         console.log('THREE')
 
-      }
+      }*/
+    } else {
+      ctx.body = 'KK2'
+    }
   }
   else {
     const queryText = ctx.request.body.queryResult.queryText
