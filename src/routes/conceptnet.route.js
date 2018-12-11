@@ -38,7 +38,7 @@ router.post('/api/conceptnet/query', async (ctx) => {
     const relation = ctx.request.body.queryResult.parameters.relation
 
     if (!queryText || !term || !relation) {
-      ctx.body = dialogFlowResponseFmt('CONCEPTNET: QUERY API Wrong or Missing Parameters')
+      ctx.body = dialogFlowResponseFmt('Hi, not sure if understand that')
     } else {
       try {
         // conceptnet 5.6 QUERY
