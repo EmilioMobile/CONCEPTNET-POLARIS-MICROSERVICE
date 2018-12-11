@@ -7,9 +7,9 @@ class PolarisXSmalltalk {
           case "what time is it": {
             console.log('what time is it')
             var d = new Date()
-            var now = d.now()
-            console.log('Now is ', now.getHours(), ':', now.getMinutes(), ':', now.getSeconds())
-            resolve('Now is ', d.getHours(), ':', d.getMinutes(), ':', d.getSeconds())
+            var now = 'Now is ' + d.getHours() + ':' + d.getMinutes() + ':'+ d.getSeconds()
+            console.log(now)
+            resolve(now)
           }
 
           case "where are you": {
