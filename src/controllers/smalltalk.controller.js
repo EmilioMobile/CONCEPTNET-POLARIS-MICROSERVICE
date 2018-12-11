@@ -4,6 +4,10 @@ class PolarisXSmalltalk {
   chat (input) {
       return new Promise((resolve, reject) => {
         switch (input) {
+          case "Hi": {
+            resolve('Hi, I am PolarisX bot, i can describe terms or things, please check the list of relations in the right side')
+          }
+
           case "what time is it": {
             console.log('what time is it')
             var d = new Date()
