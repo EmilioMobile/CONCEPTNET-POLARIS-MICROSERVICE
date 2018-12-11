@@ -28,7 +28,7 @@ router.post('/api/conceptnet/query', async (ctx) => {
 
       }
       else {
-        const response = smalltalk.chat(smalltalkQuestion)
+        // const response = smalltalk.chat(smalltalkQuestion)
         ctx.body = dialogFlowResponseFmt('casual' + ctx.request.body.queryResult.action)
         console.log('THREE')
 
