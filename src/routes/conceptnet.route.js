@@ -19,13 +19,19 @@ router.post('/api/conceptnet/query', async (ctx) => {
   // extract the data from the request
   console.log(ctx.request.body)
   if (ctx.request.body.queryResult.action === 'polarisx_smalltalk') {
+    console.log('ONE')
+
       const smalltalkQuestion = request.body.queryResult.parameters.smalltalk
       if (!smalltalkQuestion){
         ctx.body = dialogFlowResponseFmt('SMALLTALK: Wrong or Missing Parameters')
+        console.log('TWO')
+
       }
       else {
         const response = smalltalk.chat(smalltalkQuestion)
         ctx.body = dialogFlowResponseFmt('casual' + ctx.request.body.queryResult.action)
+        console.log('THREE')
+
       }
   }
   else {
