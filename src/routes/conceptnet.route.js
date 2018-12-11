@@ -18,28 +18,20 @@ var nlp = new NLP()
 router.post('/api/conceptnet/query', async (ctx) => {
   ctx.res.setHeader('Content-Type', 'application/json')
   // extract the data from the request
-  console.log(ctx.request.body)
   if (ctx.request.body.queryResult.action === 'polarisx_smalltalk') {
-    console.log('ONE')
-    console.log(ctx.request.body.queryResult.parameters.smalltalk)
     if (ctx.request.body.queryResult.parameters.smalltalk) {
       const smalltalkQuestion = ctx.request.body.queryResult.parameters.smalltalk
       console.log('TWO2' + smalltalkQuestion )
-      ctx.body = 'KK'
       if (!smalltalkQuestion){
         ctx.body = dialogFlowResponseFmt('SMALLTALK: Wrong or Missing Parameters')
-        console.log('TWO3')
-
       }
       else {
-        console.log('TWO4')
-
         const response = smalltalk.chat(smalltalkQuestion)
-        ctx.body = 'KK3' + response // dialogFlowResponseFmt('casual' + ctx.request.body.queryResult.action)
-        console.log('THREE')
+        ctx.body = dialogFlowResponseFmt('casual' + ctx.request.body.queryResult.action + ' ' + response)
+        console.log('THREE' + response)
       }
     } else {
-      ctx.body = 'KK2'
+      ctx.body = dialogFlowResponseFmt('SMALLTALK: Wrong or Missing Parameters')
     }
   }
   else {
