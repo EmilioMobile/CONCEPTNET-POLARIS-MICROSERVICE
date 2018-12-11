@@ -5,7 +5,8 @@ class PolarisXSmalltalk {
       return new Promise((resolve, reject) => {
         switch (input) {
           case "what time is it": {
-            var d = new Date();
+            var d = Date.now();
+
             console.log('Now is ', d.getHours(), ':', d.getMinutes(), ':', d.getSeconds())
             resolve('Now is ', d.getHours(), ':', d.getMinutes(), ':', d.getSeconds())
           }
