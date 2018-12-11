@@ -15,6 +15,10 @@ class PolarisXSmalltalk {
             resolve('I am in Korea')
           }
 
+          case "who are you": {
+            resolve('I am PolarisX bot')
+          }
+
           case "what is the weather today": {
             resolve('Today is cold, very very cold')
           }
