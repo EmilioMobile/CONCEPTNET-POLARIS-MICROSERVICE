@@ -57,6 +57,10 @@ class PolarisXSmalltalk {
             resolve('Today is cold, very very cold')
           }
 
+          case "what can you do": {
+            resolve('I use conceptnet to describe terms meanings and relationships')
+          }
+
           default: {
             resolve('Hi I am the small talk module, you wanted a answer for ' + input + '?')
           }
